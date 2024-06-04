@@ -14,6 +14,7 @@ library(multcomp)
 library(multcompView)
 library(DataCombine)
 library(mvabund)
+library(ggplot2)
 
 data<-read_xlsx("Data/fulldata.xlsx")
 
@@ -75,9 +76,9 @@ mod1<-glmer(Total~Material+(1|Brochette),data=model,family=poisson)
 emmeans(mod1,pairwise~Material)
 
 den$letters<-"a"
-den$letters[den$Time=="6 months"]<-c("ef","de","cd","cd","a","b","bc","bc","f","de")
-den$letters[den$Time=="14 months"]<-c("de","bcd","abc","abc","a","ab","cde","abc","e","cde")
-den$letters[den$Time=="18 months"]<-c("de","ef","ab","cd","a","bc","d","a","f","ef")
+den$letters[den$Time=="6 months"]<-c("ef","de","cd","b","cd","a","bc","bc","f","de")
+den$letters[den$Time=="14 months"]<-c("de","bcd","abc","ab","abc","a","cde","abc","e","cde")
+den$letters[den$Time=="18 months"]<-c("de","ef","ab","bc","cd","a","d","a","f","ef")
 
 
 fig1<-ggplot(den, aes(x = Mat, y = den,fill=Mat)) +
